@@ -1,7 +1,280 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyStore());
+}
+
+
+/*void main() {
+  runApp(const MaterialApp(
+    title: 'Navigation Basics',
+    home: FirstRoute(),
+  ));
+}*/
+
+class MyStore extends StatelessWidget {
+  const MyStore({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyProduct() ,
+    );
+  }
+}
+
+class MyProduct extends StatefulWidget {
+  const MyProduct({super.key});
+
+  @override
+  State<MyProduct> createState() => _MyProductState();
+}
+
+class _MyProductState extends State<MyProduct> {
+  int currentPageIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.black,),
+        actions: [
+          Padding(
+              padding: EdgeInsets.all(10),
+              child: Icon(Icons.search_outlined))
+        ],
+        actionsIconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+      ),
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: Colors.red[800],
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'MyCart',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.favorite),
+            icon: Icon(Icons.favorite_border_outlined),
+            label: 'Favourite',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.person),
+            icon: Icon(Icons.person_outline_outlined),
+            label: 'My Account',
+          ),
+        ],
+      ),
+      body: <Widget>[
+        Container(
+          //color: Colors.red,
+          alignment: Alignment.center,
+          child: ListView(
+            children: [
+              Card(
+                child: Container(
+                  padding: EdgeInsets.all(30),
+                  child: Row(children: [
+                    Container(
+                      width: 100,
+                      height: 100,
+                      child: Image.asset("images/blouse.jpg")
+                    )
+
+                  ],),
+                ),
+              )
+            ],
+          ),
+
+        ),
+        Container(
+          color: Colors.green,
+          alignment: Alignment.center,
+          child: const Text('Page 2'),
+        ),
+        Container(
+          color: Colors.blue,
+          alignment: Alignment.center,
+          child: const Text('Page 3'),
+        ),
+        Container(
+          color: Colors.yellow,
+          alignment: Alignment.center,
+          child: const Text('Page 4'),
+        ),
+      ][currentPageIndex],
+    );
+  }
+}
+
+
+/// Flutter code sample for [NavigationBar].
+
+//void main() => runApp(const NavigationBarApp());
+
+class NavigationBarApp extends StatelessWidget {
+  const NavigationBarApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(home: NavigationExample());
+  }
+}
+
+class NavigationExample extends StatefulWidget {
+  const NavigationExample({super.key});
+
+  @override
+  State<NavigationExample> createState() => _NavigationExampleState();
+}
+
+class _NavigationExampleState extends State<NavigationExample> {
+  int currentPageIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: Colors.amber[800],
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.school),
+            icon: Icon(Icons.school_outlined),
+            label: 'School',
+          ),
+        ],
+      ),
+      body: <Widget>[
+        Container(
+          color: Colors.red,
+          alignment: Alignment.center,
+          child: const Text('Page 1'),
+        ),
+        Container(
+          color: Colors.green,
+          alignment: Alignment.center,
+          child: const Text('Page 2'),
+        ),
+        Container(
+          color: Colors.blue,
+          alignment: Alignment.center,
+          child: const Text('Page 3'),
+        ),
+      ][currentPageIndex],
+    );
+  }
+}
+
+
+class FirstRoute extends StatelessWidget {
+  const FirstRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+       // title: const Text('First Route'),
+        leading: Icon(Icons.arrow_back_ios_new_sharp),
+        //leadingWidth: 100, // default is 56
+       // automaticallyImplyLeading: false, // simple as that!
+        title: Container(
+          width: 40,
+          child: Image.network("url"),
+        ),
+        centerTitle: true, // like this!
+
+        actions: [
+          Container(
+            width: 30,
+            child: Image.asset(
+              'assets/images/profile_pic.png',
+            ),
+          ),
+          Icon(Icons.more_vert),
+        ],
+        backgroundColor: Colors.deepOrange[500],
+        actionsIconTheme: IconThemeData(color: Colors.green, size: 36),
+        elevation: 15,
+
+        toolbarHeight: 100, // default is 56
+        toolbarOpacity: 0.5,
+
+      ),
+      drawer: Drawer(),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Open route'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SecondRoute()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Route'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
