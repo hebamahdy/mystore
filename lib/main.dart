@@ -89,96 +89,96 @@ class _MyProductState extends State<MyProduct> {
               ListView(
                 children: [
                   SizedBox(
-                    height:150,
-                    child: Container(
-                      color: Colors.blue,
-                      child: Stack(
-                        alignment: AlignmentDirectional.bottomEnd,
-                        //fit: StackFit.expand,
-                        children: [
-                          Card(
-                            child: Container(
-                              padding: EdgeInsets.all(30),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      width: 100,
-                                      height: 100,
-                                      child: Image.asset("images/blouse.jpg")),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        child: Text(
-                                          "Title",
-                                          style: TextStyle(fontWeight: FontWeight.w900),
-                                        ),
-                                      ),
-                                      Text(
-                                        "Description",
+                    height: 100,
+                    child: Stack(
+                      alignment: AlignmentDirectional.bottomEnd,
+                      //fit: StackFit.expand,
+                      children: [
+                        Card(
+                          child: Container(
+                            color: Colors.brown,
+                            height: 100,
+                            padding: EdgeInsets.all(30),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                    width: 100,
+                                    height: 100,
+                                    child: Image.asset("images/blouse.jpg")),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        "Title",
                                         style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                            fontWeight: FontWeight.w900),
                                       ),
-                                      RatingBar.builder(
-                                        initialRating: 3,
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemSize: 20.0,
-                                        itemCount: 5,
-                                        itemPadding:
-                                            EdgeInsets.symmetric(horizontal: 1.0),
-                                        itemBuilder: (context, _) => Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
+                                    ),
+                                    Text(
+                                      "Description",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                      Container(
-                                        child: Text(
-                                          "50\$",
-                                          style: TextStyle(fontWeight: FontWeight.w900),
-                                        ),
+                                    ),
+                                    RatingBar.builder(
+                                      initialRating: 3,
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemSize: 20.0,
+                                      itemCount: 5,
+                                      itemPadding: EdgeInsets.symmetric(
+                                          horizontal: 1.0),
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
                                       ),
-                                    ],
-                                  )
-                                ],
-                              ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                      },
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "50\$",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w900),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             ),
                           ),
-                          Positioned(
-
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 30,
-                              height: 30,
-                              child: Icon(Icons.favorite_outline_sharp),
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: const BorderRadius.all(Radius.circular(4000)),
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    width: 1,
-                                    style: BorderStyle.solid,
-                                    strokeAlign: BorderSide.strokeAlignCenter),
-
-                              ),
-
+                        ),
+                        Positioned(
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 30,
+                            height: 30,
+                            child: Icon(Icons.favorite_outline_sharp),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(4000)),
+                              border: Border.all(
+                                  color: Colors.grey,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                  strokeAlign: BorderSide.strokeAlignCenter),
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                          top: 180,
+                          right: 20,
+                        ),
+                      ],
                     ),
                   ),
-
                 ],
               ),
-
             ],
           ),
         ),
