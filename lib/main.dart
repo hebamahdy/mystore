@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 void main() {
   runApp(const MyStore());
 }
-
 
 /*void main() {
   runApp(const MaterialApp(
@@ -19,7 +19,7 @@ class MyStore extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyProduct() ,
+      home: MyProduct(),
     );
   }
 }
@@ -38,11 +38,13 @@ class _MyProductState extends State<MyProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.black,),
+        leading: Icon(
+          Icons.arrow_back_ios_new_outlined,
+          color: Colors.black,
+        ),
         actions: [
           Padding(
-              padding: EdgeInsets.all(10),
-              child: Icon(Icons.search_outlined))
+              padding: EdgeInsets.all(10), child: Icon(Icons.search_outlined))
         ],
         actionsIconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
@@ -81,25 +83,104 @@ class _MyProductState extends State<MyProduct> {
       body: <Widget>[
         Container(
           //color: Colors.red,
-          alignment: Alignment.center,
-          child: ListView(
+          child: Stack(
+            alignment: AlignmentDirectional.bottomEnd,
             children: [
-              Card(
-                child: Container(
-                  padding: EdgeInsets.all(30),
-                  child: Row(children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      child: Image.asset("images/blouse.jpg")
-                    )
+              ListView(
+                children: [
+                  SizedBox(
+                    height:150,
+                    child: Container(
+                      color: Colors.blue,
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomEnd,
+                        //fit: StackFit.expand,
+                        children: [
+                          Card(
+                            child: Container(
+                              padding: EdgeInsets.all(30),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                      width: 100,
+                                      height: 100,
+                                      child: Image.asset("images/blouse.jpg")),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        child: Text(
+                                          "Title",
+                                          style: TextStyle(fontWeight: FontWeight.w900),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Description",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      RatingBar.builder(
+                                        initialRating: 3,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemSize: 20.0,
+                                        itemCount: 5,
+                                        itemPadding:
+                                            EdgeInsets.symmetric(horizontal: 1.0),
+                                        itemBuilder: (context, _) => Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        onRatingUpdate: (rating) {
+                                          print(rating);
+                                        },
+                                      ),
+                                      Container(
+                                        child: Text(
+                                          "50\$",
+                                          style: TextStyle(fontWeight: FontWeight.w900),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Positioned(
 
-                  ],),
-                ),
-              )
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: 30,
+                              height: 30,
+                              child: Icon(Icons.favorite_outline_sharp),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: const BorderRadius.all(Radius.circular(4000)),
+                                border: Border.all(
+                                    color: Colors.grey,
+                                    width: 1,
+                                    style: BorderStyle.solid,
+                                    strokeAlign: BorderSide.strokeAlignCenter),
+
+                              ),
+
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+
             ],
           ),
-
         ),
         Container(
           color: Colors.green,
@@ -120,7 +201,6 @@ class _MyProductState extends State<MyProduct> {
     );
   }
 }
-
 
 /// Flutter code sample for [NavigationBar].
 
@@ -194,7 +274,6 @@ class _NavigationExampleState extends State<NavigationExample> {
   }
 }
 
-
 class FirstRoute extends StatelessWidget {
   const FirstRoute({super.key});
 
@@ -202,15 +281,16 @@ class FirstRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       // title: const Text('First Route'),
+        // title: const Text('First Route'),
         leading: Icon(Icons.arrow_back_ios_new_sharp),
         //leadingWidth: 100, // default is 56
-       // automaticallyImplyLeading: false, // simple as that!
+        // automaticallyImplyLeading: false, // simple as that!
         title: Container(
           width: 40,
           child: Image.network("url"),
         ),
-        centerTitle: true, // like this!
+        centerTitle: true,
+        // like this!
 
         actions: [
           Container(
@@ -225,9 +305,9 @@ class FirstRoute extends StatelessWidget {
         actionsIconTheme: IconThemeData(color: Colors.green, size: 36),
         elevation: 15,
 
-        toolbarHeight: 100, // default is 56
+        toolbarHeight: 100,
+        // default is 56
         toolbarOpacity: 0.5,
-
       ),
       drawer: Drawer(),
       body: Center(
@@ -265,8 +345,6 @@ class SecondRoute extends StatelessWidget {
     );
   }
 }
-
-
 
 class SecondPage extends StatelessWidget {
   @override
